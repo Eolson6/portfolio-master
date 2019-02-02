@@ -10,10 +10,10 @@ class ProjectCard extends Component {
     render() {
         return (
             <div>
-                {/* { this.props.reduxStore.projectsReducer.map((project) => {
-                        return <FavoriteCard key={favorite.id} favorite={favorite} />
-                    });
-                } */} */}
+                {this.props.reduxStore.projectsReducer.map((project) => {
+                    return <ProjectsList key={projectsid} name={name} />
+                });
+                }
 
                 {JSON.stringify(this.props.reduxStore.projectsReducer.name)}
                 <h1>[{this.props.reduxStore.projectsReducer}]</h1>
