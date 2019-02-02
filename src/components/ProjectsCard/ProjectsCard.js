@@ -22,6 +22,7 @@ class ProjectsCard extends Component {
                 
                 {this.props.reduxStore.projectsReducer.map(( project, i) => {
                     return (
+                       
                         <ProjectsList key={i} project={project} name={project.name} description={project.description} 
                         thumbnail={project.thumbnail} website={project.website} date_completed={project.date_completed} 
                         tag_id={project.tag_id} />
