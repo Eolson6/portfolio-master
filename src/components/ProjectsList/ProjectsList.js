@@ -3,17 +3,32 @@ import { connect } from 'react-redux';
 
 class ProjectsList extends Component {
 
+    componentDidMount() {
+        this.getProjects();
+    }
+
+    getProjects = () => {
+        const action = { type: 'GET_PROJECTS' };
+        this.props.dispatch(action);
+    }
+
+
 
     render() {
         return (
             <div>
-                {/* { this.props.reduxStore.projectsReducer.map((project) => {
-                        return <FavoriteCard key={favorite.id} favorite={favorite} />
-                    });
-                } */} */}
-
-                {JSON.stringify(this.props.reduxStore.projectsReducer.name)}
-                <h1>[{this.props.reduxStore.projectsReducer}]</h1>
+                <li>
+                    <span>
+                            <td>{this.props.project.name}</td>
+                            <td>{this.props.project.description}</td>
+                            <td>{this.props.project.thumbnail}</td>
+                            <td>{this.props.project.website}</td>
+                            <td>{this.props.project.date_completed}</td>
+                            <td>{this.props.project.tag_id}</td>
+                         
+               
+                    </span>
+                </li>
 
             </div>
         );
