@@ -12,6 +12,7 @@ import createSagaMiddleware from 'redux-saga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('GET_PROJECTS', getProjects)
 
 }
 
@@ -35,6 +36,18 @@ const tags = (state = [], action) => {
             return action.payload;
         default:
             return state;
+    }
+}
+
+function* getFavorites(action) {
+    try {
+        const favorites = yield axios.get('/projects', action.payload);
+        const nextAction = {type: 'GET_PROJECTS' };
+        yield put (nextAction)
+    } catch(error) {
+        console.log('error in get', error);
+        alert (error)
+        
     }
 }
 
