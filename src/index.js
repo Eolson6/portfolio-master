@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery, put } from 'redux-saga/effects';
+import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -20,10 +22,13 @@ function* rootSaga() {
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store projects returned from the server
-const projects = (state = [], action) => {
+const projectsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
+            console.log('projectsRudcer', action.payload);
             return action.payload;
+            
+            
         default:
             return state;
     }
@@ -39,10 +44,11 @@ const tags = (state = [], action) => {
     }
 }
 
-function* getFavorites(action) {
+function* getProjects(action) {
     try {
-        const favorites = yield axios.get('/projects', action.payload);
-        const nextAction = {type: 'GET_PROJECTS' };
+        const projects = yield axios.get('/projects', action.payload);
+        console.log('in getProjects', projects.data);
+        const nextAction = {type: 'SET_PROJECTS', payload:projects.data };
         yield put (nextAction)
     } catch(error) {
         console.log('error in get', error);
@@ -54,7 +60,7 @@ function* getFavorites(action) {
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
-        projects,
+        projectsReducer,
         tags,
     }),
     // Add sagaMiddleware to our store
