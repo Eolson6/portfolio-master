@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ProjectCards from '../ProjectsCard/ProjectsCard.js'
 
 
+
 class Projects extends Component {
 
     componentDidMount() {
@@ -16,11 +17,13 @@ class Projects extends Component {
 
     render() {
         return (
+    
             <div>
                 <ul>
                 <ProjectCards getProjects={this.getProjects} />
                 </ul>
-            </div>
+                    </div>
+          
         );
     }
 }
