@@ -14,7 +14,7 @@ class ProjectsList extends Component {
 
     componentDidMount() {
         this.getProjects();
-     
+
     }
 
     getProjects = () => {
@@ -23,31 +23,31 @@ class ProjectsList extends Component {
     }
 
 
-render() {
+    render() {
 
- let websiteButton= ''
-    if (!this.props.project.website) {
-        websiteButton= null
-   } else {
-        websiteButton = <Button size="small" color="primary" variant="outlined">
-           Link to website
-        </Button>
-   
-   }
-
-
-   let githubButton = '';
-    if (!this.props.project.github) {
-        githubButton = null
-    } else {
-        githubButton = <Button size="small" color="primary" variant="outlined">
-            Link to Github
+        let websiteButton = ''
+        if (!this.props.project.website) {
+            websiteButton = null
+        } else {
+            websiteButton = <Button size="small" color="primary" variant="outlined">
+                Link to website
         </Button>
 
-    }
+        }
 
 
-    let displayProjectDate='';
+        let githubButton = '';
+        if (!this.props.project.github) {
+            githubButton = null
+        } else {
+            githubButton = <Button size="small" color="primary" variant="outlined">
+                Link to Github
+        </Button>
+
+        }
+
+
+        let displayProjectDate = '';
         if (!this.props.project.date_completed) {
             displayProjectDate = null
         } else {
@@ -55,9 +55,9 @@ render() {
                 {this.props.project.date_completed}
             </Typography>
         }
-    
 
-    let displayTagId =''; 
+
+        let displayTagId = '';
         if (!this.props.project.description) {
             displayTagId = null;
         } else {
@@ -65,62 +65,62 @@ render() {
                 {this.props.project.displayTagId}
             </Typography>
         }
-    
-    
 
-   let displayThumbnail ='' 
-    if (!this.props.project.thumbnail) {
+
+
+        let displayThumbnail = ''
+        if (!this.props.project.thumbnail) {
             displayDescription = null;
         } else {
-        displayThumbnail = 
-            < Typography component = "p" >
-                { this.props.project.thumbnail }
-                            </Typography >
+            displayThumbnail =
+                < Typography component="p" >
+                    {this.props.project.thumbnail}
+                </Typography >
         }
-    
-
-    let displayDescription = ''
-    if (!this.props.project.description) {
-        displayDescription = null;
-    } else {
-        displayDescription = <Typography component="p">
-            {this.props.project.description}
-        </Typography>
-    }
 
 
+        let displayDescription = ''
+        if (!this.props.project.description) {
+            displayDescription = null;
+        } else {
+            displayDescription = <Typography component="p">
+                {this.props.project.description}
+            </Typography>
+        }
 
 
-    return (
+
+
+        return (
             <Card>
                 <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                />
+                    <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        height="140"
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                    />
                     <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                       {this.props.project.name}
-                 </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {this.props.project.name}
+                        </Typography>
 
                         <div clasName='projectList'>
-                        {displayTagId}
+                            {displayTagId}
                             {displayThumbnail}
-                        {displayProjectDate}
-                        {displayDescription}
-                        {displayTagId}
+                            {displayProjectDate}
+                            {displayDescription}
+                            {displayTagId}
                         </div>
                     </CardContent>
                 </CardActionArea>
 
 
                 <CardActions>
-               
-                {githubButton}
-                {websiteButton}
+
+                    {githubButton}
+                    {websiteButton}
                 </CardActions>
 
             </Card>

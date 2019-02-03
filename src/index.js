@@ -16,6 +16,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjects)
+    yield takeEvery('GET_TAGS', getTags)
 
 }
 
@@ -35,28 +36,46 @@ const projectsReducer = (state = [], action) => {
     }
 }
 
+function* getProjects(action) {
+    try {
+        const projects = yield axios.get('/projects', action.payload);
+        console.log('in getProjects', projects.data);
+        const nextAction = { type: 'SET_PROJECTS', payload: projects.data };
+        yield put(nextAction)
+    } catch (error) {
+        console.log('error in get', error);
+        alert(error)
+
+    }
+}
+
 // Used to store the project tags (e.g. 'React', 'jQuery', 'Angular', 'Node.js')
 const tags = (state = [], action) => {
     switch (action.type) {
         case 'SET_TAGS':
+        console.log('tagsReducer', action.payload);
+        
             return action.payload;
         default:
             return state;
     }
 }
 
-function* getProjects(action) {
+function* getTags(action) {
     try {
-        const projects = yield axios.get('/projects', action.payload);
-        console.log('in getProjects', projects.data);
-        const nextAction = {type: 'SET_PROJECTS', payload:projects.data };
-        yield put (nextAction)
-    } catch(error) {
+        const tags = yield axios.get('/adminPage', action.payload);
+        console.log('in gettags', tags.data);
+        const nextAction = { type: 'SET_TAGS', payload: tags.data };
+        yield put(nextAction)
+    } catch (error) {
         console.log('error in get', error);
-        alert (error)
-        
+        alert(error)
+
     }
 }
+
+
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
