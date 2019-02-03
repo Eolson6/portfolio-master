@@ -80,10 +80,13 @@ function* addProject(action) {
         yield axios.post('/adminPage', action.payload);
         const nextAction = {type:'SET_PROJECTS'};
         yield put(nextAction);
+        
     } catch (error) {
         console.log('error in post', error);
+        alert('error submitting new project')
         
     }
+    alert('new project sucessfully submitted')
 }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import ProjectsList from '../ProjectsList/ProjectsList.js'
+import AdminProjectPage from '../AdminProjectPage/AdminProjectPage.js'
 
 
 class AdminPage extends Component {
@@ -111,6 +111,7 @@ class AdminPage extends Component {
                 date_completed: '',
                 tag_id: ''
         })
+        alert('New Project Added')
     }
     
 
@@ -133,6 +134,7 @@ class AdminPage extends Component {
                     })}
                     </select>
                 <button onClick={this.handleSubmit}>Submit</button>
+                <AdminProjectPage/>
             </form>
                 
             // <ProjectsList key={i} project={project} name={project.name} description={project.description}
