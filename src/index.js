@@ -17,6 +17,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjects)
     yield takeEvery('GET_TAGS', getTags)
+    yield takeEvery('ADD_PROJECT', addProject)
 
 }
 
@@ -74,6 +75,16 @@ function* getTags(action) {
     }
 }
 
+function* addProject(action) {
+    try {
+        yield axios.post('/adminPage', action.payload);
+        const nextAction = {type:'SET_PROJECTS'};
+        yield put(nextAction);
+    } catch (error) {
+        console.log('error in post', error);
+        
+    }
+}
 
 
 

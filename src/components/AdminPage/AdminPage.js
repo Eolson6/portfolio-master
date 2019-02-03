@@ -88,22 +88,48 @@ class AdminPage extends Component {
         });
     }
 
+    handleSubmit = (event) =>{
+        const newProject = {
+            name: this.state.name,
+            description: this.state.description,
+            thumbnail: this.state.thumbnail,
+            website: this.state.website,
+            github: this.state.github,
+            date_completed: this.state.date_completed,
+            tag_id: this.state.tag_id
+
+        }
+        console.log('in handleSubmit');
+        const action = { type: 'ADD_PROJECT',payload: newProject};
+        this.props.dispatch(action)
+        this.setState({
+                name: '',
+                description: '',
+                thumbnail: '',
+                website: '',
+                github: '',
+                date_completed: '',
+                tag_id: ''
+        })
+    }
+    
+
     render() {
 
         return (
 
             <form>
                 <h1>Admin Page</h1>
-                <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                <input type="text" value={this.state.description} onChange={this.handleDescriptionChange} />
-                <input type="text" value={this.state.thumbnail} onChange={this.handleThumbnailChange} />
-                <input type="text" value={this.state.website} onChange={this.handleWebsiteChange} />
-                <input type="text" value={this.state.github} onChange={this.handleGithubChange} />
-                <input type="text" value={this.state.date_completed} onChange={this.handleDateChange} />
+                <input type="text" placeholder="Name" value={this.state.name} onChange={this.handleNameChange} />
+                <input type="text" placeholder="Description" value={this.state.description} onChange={this.handleDescriptionChange} />
+                <input type="text" placeholder="thumbnail" value={this.state.thumbnail} onChange={this.handleThumbnailChange} />
+                <input type="text" placeholder="website" value={this.state.website} onChange={this.handleWebsiteChange} />
+                <input type="text" placeholder="github link" value={this.state.github} onChange={this.handleGithubChange} />
+                <input type="text" placeholder="MM-DD-YYYY" value={this.state.date_completed} onChange={this.handleDateChange} />
                 <select onChange={this.handleTagChange} value={this.state.tag_id}>
                     <option value="">Select Tag</option>
                     {this.props.reduxStore.tags.map((tag, i) => {
-                        return <option key={i} value={tag.name}>{tag.name}</option>
+                        return <option key={i} value={tag.id}>{tag.name}</option>
                     })}
                     </select>
                 <button onClick={this.handleSubmit}>Submit</button>
