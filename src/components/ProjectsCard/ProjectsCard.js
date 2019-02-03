@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import ProjectsList from '../ProjectsList/ProjectsList.js'
-import { Card, TextField, Button, Grid } from '@material-ui/core'
 
 class ProjectsCard extends Component {
 
@@ -19,9 +18,6 @@ class ProjectsCard extends Component {
 
     render() {
         return (
-            <Grid container justify="center">
-                <Grid item xs={6}>
-                    <Card>
             <ul>
                 
                 {this.props.reduxStore.projectsReducer.map(( project, i) => {
@@ -33,9 +29,6 @@ class ProjectsCard extends Component {
                     )
                 })}
                 </ul>
-                    </Card>
-                </Grid>
-            </Grid>
                     
         )
     }
