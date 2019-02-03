@@ -25,7 +25,10 @@ const sagaMiddleware = createSagaMiddleware();
 const projectsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
+            console.log('projectsRudcer', action.payload);
             return action.payload;
+            
+            
         default:
             return state;
     }
