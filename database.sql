@@ -3,10 +3,10 @@ CREATE TABLE "tags" (
     "name" varchar(255) NOT NULL
 );
 
-INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
-VALUES ('project name', 'project description', 'project thumbnail', 'project website', 'project github', '01-01-2019' , 2);
-VALUES ('project2', 'project 2', 'project 2', 'project website 2', 'project github 2', '01-01-2019' , 1);
-VALUES ('project3', 'project 3', 'project 3', 'project website 3', 'project github 3', '01-01-2019' , 1);
+VALUES ('portfolio master', 'project using sagas', '/images/SagasPortfolio', 
+'www.heroku.com', 'wwww.github.com', '01-01-2019', '3');
+
+
 
 CREATE TABLE "projects" (
     "id" SERIAL PRIMARY KEY,
@@ -15,6 +15,6 @@ CREATE TABLE "projects" (
     "thumbnail" varchar(2048), 
     "website" varchar(2048),
     "github" varchar(2048),
-    "date_completed" date,
+    "date_completed" varchar,
     "tag_id" INT REFERENCES "tags"
 );

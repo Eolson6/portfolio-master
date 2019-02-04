@@ -1,28 +1,47 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
-
-
 
 class AdminProjectPage extends Component {
 
+    //tried to create for delete functioon
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: '',
+        }
+    }
+
+    //runs when page runs
     componentDidMount() {
-        
         this.getProjects();
     }
 
+    //talks to saga with action type- gets info from reducer
     getProjects = () => {
         const action = { type: 'GET_PROJECTS' };
         this.props.dispatch(action);
     }
 
+    //talks to saga with action type- gets info from reducer
+    handleDeleteID = (event) => {
+        console.log('handleDateChange', event.target.value);
+        this.setState({
+            id: event.target.value
+        });
+    }
+
+    //not able to get funciton to work - would send correct value on click but could not 
+    //get correct syntax in delete router
+    // deleteProject = (event) => {
+    //     console.log('in delete', this.state.id) ;
+    //     this.setState({
+    //         id: event.target.value
+
+    //     const action = { type: 'DELETE_PROJECT', payload:id } };
+    //     this.props.dispatch(action)
+    // });
+    // }
 
     render() {
 
@@ -40,40 +59,29 @@ class AdminProjectPage extends Component {
                             <th>Language Tag</th>
                         </tr>
                     </thead>
-                <tbody>
-                {this.props.reduxStore.projectsReducer.map((project, i) => {
-                    return (<tr key={i}>
-                        <td>{project.name}</td>
-                        <td>{project.description}</td>
-                        <td> {project.thumbnail} </td>
-                        <td>  {project.github}</td>
-                        <td>{project.website}</td>
-                        <td >{project.date_completed}</td>
-                        <td>{project.tag_id} </td>
-                        <button>Delete</button>
-                    </tr>
-                    
-                    )
-                })}
+                    <tbody>
+                        {/* maping out data received from projects reducer */}
+                        {this.props.reduxStore.projectsReducer.map((project, i) => {
+                            return (<tr key={i}>
+                                <td>{project.name}</td>
+                                <td>{project.description}</td>
+                                <td> {project.thumbnail} </td>
+                                <td>  {project.github}</td>
+                                <td>{project.website}</td>
+                                <td >{project.date_completed}</td>
+                                <td>{project.name} </td>
+                                <button onClick={this.deleteProject} onChange={this.handleDeleteId} value={project.id}>Delete</button>
+                            </tr>
+
+                            )
+                        })}
                     </tbody>
-                    </table>
-            
-
+                </table>
             </Card>
+        )
 
-            
-
-
-
-
-            )
-
+    }
 }
-}
-
-
-
-
 
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore

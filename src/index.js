@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjects)
     yield takeEvery('GET_TAGS', getTags)
     yield takeEvery('ADD_PROJECT', addProject)
+    yield takeEvery('DELETE_PROJECT', deleteProject)
 
 }
 
@@ -89,6 +90,20 @@ function* addProject(action) {
     alert('new project sucessfully submitted')
 }
 
+function* deleteProject(action) {
+    console.log('action.payload delete', action);
+    const id = action.payload.id;
+    console.log('in delete', id);
+    
+    try{
+        yield axios.delete(`/adminPage/${id}`)
+        const nextAction={type:'SET_PROJECTS'};
+        yield put(nextAction);
+    }catch (error) {
+        console.log('error in delete', error);
+        alert('error in deleting project')
+    }
+}
 
 
 // Create one store that all components can use
