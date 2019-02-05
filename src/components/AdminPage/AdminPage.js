@@ -162,7 +162,8 @@ class AdminPage extends Component {
                 <AdminProjectPage />
                 <CardActionArea>
                     <BottomNavigation>
-                        <BottomNavigationAction onClick={this.returnToProjects} label="Return to main page" icon={<LocationOnIcon />} />
+                  
+                        <BottomNavigationAction onClick={this.returnToProjects} label="Return to main page" value="Return to Project page" icon={<LocationOnIcon />} />
                     </BottomNavigation>
                 </CardActionArea>
             </form>

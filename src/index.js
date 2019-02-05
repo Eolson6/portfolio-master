@@ -79,8 +79,8 @@ function* getTags(action) {
 function* addProject(action) {
     try {
         yield axios.post('/adminPage', action.payload);
-        const nextAction = {type:'SET_PROJECTS'};
-        yield put(nextAction);
+        const action = {type:'SET_PROJECTS'};
+        yield put(action);
         
     } catch (error) {
         console.log('error in post', error);
@@ -90,14 +90,18 @@ function* addProject(action) {
     alert('new project sucessfully submitted')
 }
 
+//didn't have delete function working when I submited project
+//missed the live walk through but worked on it at home 
 function* deleteProject(action) {
-    console.log('action.payload delete', action);
-    const id = action.payload.id;
+    console.log('action.payload delete', action.payload);
+    const id = action.payload
     console.log('in delete', id);
     
     try{
-        yield axios.delete(`/adminPage/${id}`)
-        const nextAction={type:'SET_PROJECTS'};
+        //updated next actin type from SET to GET- also updated what
+        //was being sent
+        yield axios.delete(`/adminPage/${action.payload}`)
+        const nextAction={type:'GET_PROJECTS'};
         yield put(nextAction);
     }catch (error) {
         console.log('error in delete', error);

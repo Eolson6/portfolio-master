@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
+import Axios from "axios";
 
 class AdminProjectPage extends Component {
 
@@ -25,23 +26,22 @@ class AdminProjectPage extends Component {
 
     //talks to saga with action type- gets info from reducer
     handleDeleteID = (event) => {
-        console.log('handleDateChange', event.target.value);
+        console.log('handleDateChange', {id: event.target.value});
         this.setState({
             id: event.target.value
         });
     }
 
-    //not able to get funciton to work - would send correct value on click but could not 
-    //get correct syntax in delete router
-    // deleteProject = (event) => {
-    //     console.log('in delete', this.state.id) ;
-    //     this.setState({
-    //         id: event.target.value
+    // not able to get funciton to work - would send correct value on click but could not 
+    // get correct syntax in delete router
+    deleteProject = (event) => {
+        console.log('in delete', event.target.value) ;
+        // this.setState({
+        //     id: event.target.value
+        const action = { type: 'DELETE_PROJECT', payload: event.target.value } 
+        this.props.dispatch(action)
+    };
 
-    //     const action = { type: 'DELETE_PROJECT', payload:id } };
-    //     this.props.dispatch(action)
-    // });
-    // }
 
     render() {
 
