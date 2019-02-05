@@ -6,7 +6,7 @@ CREATE TABLE "tags" (
 -- had incomplet SQL language in submission
 INSERT INTO "projects" ("name", "description", "thumbnail",
                         "website", "github", "date_completed", "tag_id")
-VALUES ('portfolio master', 'project using sagas', '/images/SagasPortfolio', 
+VALUES ('portfolio master', 'project using sagas', '/images/SagasPortfoli.png', 
 'www.heroku.com', 'wwww.github.com', '01-01-2019', '3');
 
 
