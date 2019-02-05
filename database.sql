@@ -3,9 +3,12 @@ CREATE TABLE "tags" (
     "name" varchar(255) NOT NULL
 );
 
-
-VALUES ('portfolio master', 'project using sagas', '/images/SagasPortfolio.png', 
+-- had incomplet SQL language in submission
+INSERT INTO "projects" ("name", "description", "thumbnail",
+                        "website", "github", "date_completed", "tag_id")
+VALUES ('portfolio master', 'project using sagas', '/images/SagasPortfolio', 
 'www.heroku.com', 'wwww.github.com', '01-01-2019', '3');
+
 
 
 
